@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/camera_attempt_2.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.0823529, 0.0705882, 0.262745, 1 )
+
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 1 )
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.5, 0.5, 0.5 )
+
+[node name="camera_attempt_2" type="KinematicBody"]
+collision_layer = 2
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="rig" type="Spatial" parent="."]
+
+[node name="boom2" type="SpringArm" parent="rig"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.102908 )
+spring_length = 4.0
+
+[node name="Camera" type="Camera" parent="rig/boom2"]
+current = true
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 3 )
